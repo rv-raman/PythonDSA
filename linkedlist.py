@@ -61,6 +61,21 @@ class Linkedlist():
                 itr=itr.next
         print()
 
+    def remove_element(self,n):
+        prev=None
+        itr =self.head
+        if itr.data==n:
+            self.head = itr.next
+            return
+        while itr!=None and itr.data!=n:
+            prev=itr
+            itr=itr.next
+        if itr==None:
+            print("element does not exist")
+            return
+        prev.next = itr.next
+
+
     def insert_at(self,pos,n):
         if pos<0 or pos>self.len_of_ll():
             raise Exception("not valid index")
@@ -83,9 +98,10 @@ class Linkedlist():
 
 if __name__=="__main__":
     ll = Linkedlist()
-    ll.insert([5,2,1,3,4,12323,234521,1,1])
+    ll.insert([5,2,1,3,4,12323,234521])
     length= ll.len_of_ll()
     print(length)
     ll.printl()
-    ll.insert_at(9,444)
+    ll.remove_element(2345)
+    #ll.insert_at(9,444)
     ll.printl()
