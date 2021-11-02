@@ -3,7 +3,7 @@ class Node:
         self.data = data
         self.next = next
 
-class Linkedlist():
+class LinkedList():
     def __init__(self):
         self.head = None
 
@@ -22,7 +22,7 @@ class Linkedlist():
         node.next = self.head
         self.head=node
 
-    def insert(self,lst):
+    def insert_values(self,lst):
         for i in lst:
             self.insert_at_end(i)
 
@@ -51,7 +51,7 @@ class Linkedlist():
             itr.next = itr.next.next
 
 
-    def printl(self):
+    def print(self):
         if self.head is None:
             print("linkedlist is empty")
         else:
@@ -61,7 +61,7 @@ class Linkedlist():
                 itr=itr.next
         print()
 
-    def remove_element(self,n):
+    def remove_by_value(self,n):
         prev=None
         itr =self.head
         if itr.data==n:
@@ -74,6 +74,14 @@ class Linkedlist():
             print("element does not exist")
             return
         prev.next = itr.next
+
+    def insert_after_value(self,data_after, data_to_insert):
+        itr = self.head
+        while itr.data!=(data_after):
+            itr = itr.next
+        node = Node(data_to_insert,None)
+        node.next = itr.next
+        itr.next = node
 
 
     def insert_at(self,pos,n):
@@ -96,12 +104,20 @@ class Linkedlist():
 
 
 
+
+
 if __name__=="__main__":
-    ll = Linkedlist()
-    ll.insert([5,2,1,3,4,12323,234521])
-    length= ll.len_of_ll()
-    print(length)
-    ll.printl()
-    ll.remove_element(2345)
-    #ll.insert_at(9,444)
-    ll.printl()
+    ll = LinkedList()
+    ll.insert_values(["banana", "mango", "grapes", "orange"])
+    ll.print()
+    ll.insert_after_value("mango", "apple")  # insert apple after mango
+    ll.print()
+    ll.remove_by_value("orange")  # remove orange from linked list
+    ll.print()
+    ll.remove_by_value("figs")
+    ll.print()
+    ll.remove_by_value("banana")
+    ll.remove_by_value("mango")
+    ll.remove_by_value("apple")
+    ll.remove_by_value("grapes")
+    ll.print()
